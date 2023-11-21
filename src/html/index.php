@@ -1,0 +1,285 @@
+<?php
+    
+    require("config.php");
+
+    // Process form information
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+        $deceased_fname = $_POST["deceased_fname"];
+        $deceased_lname = $_POST["deceased_lname"];
+        $title = $_POST["title"];
+        $gender = $_POST["gender"];
+        $birth_date = $_POST["birth_date"];
+        $country_birth = $_POST["country_birth"];
+        $death_date = $_POST["death_date"];
+        $country_death = $_POST["country_death"];
+        $birth_place = $_POST["birth_place"];
+        $funeral_home = $_POST["funeral_home"];
+        $contact_person = $_POST["contact_person"];
+        $contact_no = $_POST["contact_no"];
+        $funeral_service_date = $_POST["funeral_service_date"];
+        $funeral_service_time = $_POST["funeral_service_time"];
+        $funeral_service_location = $_POST["funeral_service_location"];
+        $worship_name = $_POST["worship_name"];
+        $burial_date = $_POST["burial_date"];
+        $burial_time = $_POST["burial_time"];
+        $county = $_POST["county"];
+        $quote = $_POST["quote"];
+        $obiturary_info = $_POST["editor"];
+        $created = date("Y-m-d");
+        $death_place = $_POST["death_place"];
+        $burial_location = $_POST["burial_location"];
+
+        // SQL query to insert data into the 'death' table
+$sql = "INSERT INTO `death` (
+    `deceased_fname`,
+    `deceased_lname`,
+    `title`,
+    `gender`,
+    `birth_date`,
+    `country_birth`,
+    `death_date`,
+    `country_death`,
+    `birth_place`,
+    `funeral_home`,
+    `contact_person`,
+    `contact_no`,
+    `funeral_service_date`,
+    `funeral_service_time`,
+    `funeral_service_location`,
+    `worship_name`,
+    `burial_date`,
+    `burial_time`,
+    `county`,
+    `quote`,
+    `obiturary_info`,
+    `created`,
+    `death_place`,
+    `burial_location`
+) VALUES (
+    '$deceased_fname',
+    '$deceased_lname',
+    '$title',
+    '$gender',
+    '$birth_date',
+    '$country_birth',
+    '$death_date',
+    '$country_death',
+    '$birth_place',
+    '$funeral_home',
+    '$contact_person',
+    $contact_no,
+    '$funeral_service_date',
+    '$funeral_service_time',
+    '$funeral_service_location',
+    '$worship_name',
+    '$burial_date',
+    '$burial_time',
+    '$county',
+    '$quote',
+    '$obiturary_info',
+    '$created',
+    '$death_place',
+    '$burial_location'
+)";
+
+
+    }
+    
+?>
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nispan</title>
+  <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="../assets/css/styles.min.css" />
+  <link href="../assets/libs/quill/quill.snow.css" rel="stylesheet">
+  <style>
+    #editor-container {
+        height: 375px;
+    }
+  </style>
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      
+        <!--  Row 1 -->
+        <div class="container-fluid">
+            <form method="post" action="index.php">
+            <div class="col-12">
+                <div class="card">
+                <div class="card-body p-4 border-bottom">
+                    <h5 class="fs-4 fw-semibold mb-4">Death Notice</h5>
+                    <p>Please fill in all the details below to create the Death Notice</p>
+                    
+                    <div class="card">
+                    <div class="card-body p-4 border-bottom">
+                    <div class="row">
+                        <h5 class="fs-4 fw-semibold mb-4">Personal Information</h5>
+                    <div class="col-lg-6">
+                        <div class="mb-4">
+                        <label for="deceased_fname" class="form-label fw-semibold">Deceased First name</label>
+                        <input type="text" class="form-control" id="deceased_fname" placeholder="John Doe" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="gender" class="form-label fw-semibold">Gender</label>
+                            <input type="text" class="form-control" id="gender" placeholder="John Doe">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="birt_date" class="form-label fw-semibold">Date of birth</label>
+                            <input type="date" class="form-control" id="birth_date" >
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="country_birth" class="form-label fw-semibold">Country of birth</label>
+                            <input type="text" class="form-control" id="country_birth" placeholder="Kenya">
+                        </div>
+                        <div class="mb-4">
+                            <label for="death_date" class="form-label fw-semibold">Date of death</label>
+                            <input type="date" class="form-control" id="death_date" >
+                        </div>
+                        <div class="mb-4">
+                            <label for="death_place" class="form-label fw-semibold">Place of death</label>
+                            <input type="text" class="form-control" id="death_place" placeholder="Laikipia">
+                        </div>
+                        <div class="mb-4">
+                            <label for="country_death" class="form-label fw-semibold">Country of death</label>
+                            <input type="text" class="form-control" id="country_death" placeholder="Kenya">
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-4">
+                            <label for="deceased_lname" class="form-label fw-semibold">Deceased Last name</label>
+                            <input type="text" class="form-control" id="deceased_lname" placeholder="John Doe">
+                        </div>
+                        <div class="mb-4">
+                            <label for="title" class="form-label fw-semibold">Title</label>
+                            <input type="text" class="form-control" id="title" placeholder="Mr/Mrs">
+                        </div>
+                        <div class="mb-4">
+                            <label for="birth_place" class="form-label fw-semibold">Place of birth</label>
+                            <input type="text" class="form-control" id="birth_place" placeholder="John Doe">
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="card-body p-4 border-bottom">
+                    <h5 class="fs-4 fw-semibold mb-4">Funeral, Service and Burial </h5>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-4">
+                            <label for="funeral_home" class="form-label fw-semibold">Funeral Home Name</label>
+                            <input type="text" class="form-control" id="funeral_home" placeholder="Etc.">
+                            </div>
+
+                            <div class="mb-4">
+                            <label for="contact_person" class="form-label fw-semibold">Contact Person (Name)</label>
+                            <input type="text" class="form-control" id="contact_person" placeholder="John Doe">
+                            </div>
+                        
+                        
+                            <div class="mb-4">
+                            <label for="contact_no" class="form-label fw-semibold">Contact Person (Phone Number)</label>
+                            <input type="number" class="form-control" id="contact_no" placeholder="+254700000000">
+                            </div>
+                            
+                            <div class="mb-4">
+                            <label for="funeral_service_date" class="form-label fw-semibold">Funeral Service Date</label>
+                            <input type="date" class="form-control" id="funeral_service_date">
+                            </div>
+                            <div class="mb-4">
+                                <label for="funeral_service_time" class="form-label fw-semibold">Time</label>
+                                <input type="time" class="form-control" id="funeral_service_time">
+                            </div>
+                            <div class="mb-4">
+                                <label for="funeral_service_location" class="form-label fw-semibold">Funeral Service Location</label>
+                                <input type="text" class="form-control" id="funeral_service_location" placeholder="Nairobi">
+                            </div>
+                            <div class="mb-4">
+                                <label for="exampleInputPassword1" class="form-label fw-semibold">Name of Church/Mosque/Temple</label>
+                                <input type="text" class="form-control" id="exampleInputtext" placeholder="123 4567 201">
+                            </div>
+                            <div class="mb-4">
+                                <label for="burial_date" class="form-label fw-semibold">Burial Date</label>
+                                <input type="date" class="form-control" id="burial_date" placeholder="123 4567 201">
+                            </div>
+                            <div class="mb-4">
+                                <label for="burial_time" class="form-label fw-semibold">Time</label>
+                                <input type="time" class="form-control" id="burial_time" placeholder="123 4567 201">
+                            </div>
+                            <div class="mb-4">
+                                <label for="burial_location" class="form-label fw-semibold">Burial Location</label>
+                                <input type="text" class="form-control" id="burial_location" placeholder="Thika">
+                            </div>
+                            <div class="mb-4">
+                                <label for="exampleInputPassword1" class="form-label fw-semibold">County</label>
+                                <input type="text" class="form-control" id="county" placeholder="Nairobi">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-4 border-bottom">
+                    <h5 class="fs-4 fw-semibold mb-4">Orbituary</h5>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-4">
+                            <label for="quote" class="form-label fw-semibold">Add an orbituaty quote</label>
+                            <input type="text" class="form-control" id="quote" placeholder="Quote">
+                            </div>
+                            
+                        </div>
+                        <h5 class="fs-4 fw-semibold mb-2">Type orbituaty information here</h5>
+                        <div id="editor"  style="height: 200px">
+                        
+                        </div>  
+                    </div>
+                    <div class="mb-4"></div>
+                    <div class="col-12">
+                        <div class="d-flex align-items-center gap-3">
+                        <button class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+                    
+                    </div>
+                    </div>
+                    
+                </div>
+                </div>
+            </div>
+            </div>
+        </form>
+        </div>
+  </div>
+  
+  <script src="../assets/libs/quill/quill.min.js"></script>
+  <script src="../assets/libs/quill/quill.js"></script>
+  <script>
+    var quill = new Quill('#editor', {
+      theme: 'snow'
+    });
+  </script>
+  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/sidebarmenu.js"></script>
+  <script src="../assets/js/app.min.js"></script>
+  <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+  <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
+</body>
+
+</html>
