@@ -1,4 +1,27 @@
-<?php
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nispan</title>
+  <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="../assets/css/styles.min.css" />
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      
+        <!--  Row 1 -->
+        <div class="container-fluid">
+        <?php
 // Replace these values with your actual database connection details
 $servername = "127.0.0.1";
 $username = "root";
@@ -14,7 +37,7 @@ if ($conn->connect_error) {
 }
 
 // Assuming you have an ID parameter to identify the record in the database
-$record_id = $_GET['id']; // Make sure to sanitize this input in a real-world scenario
+$id = $_GET['id']; // Make sure to sanitize this input in a real-world scenario
 
 // Query to retrieve data for the specified record
 $sql = "SELECT * FROM death WHERE id = 1";
@@ -71,13 +94,20 @@ if ($result->num_rows > 0) {
                       <div class="tab-content">
                         <div class="tab-pane active" id="home" role="tabpanel">
                           <div class="p-3">
-                            <h3>Obituary</h3>
+                            <h3>' . $row['quote'] .'</h3>
                             <h4>' . $row['obiturary_info'] . '</h4>
                           </div>
                         </div>
                         <div class="tab-pane p-3" id="profile" role="tabpanel">
-                          <h3>Funeral Details</h3>
-                          <h4>' . $row['funeral_home'] . ', ' . $row['funeral_service_date'] . ' ' . $row['funeral_service_time'] . '</h4>
+                          <h3>' . $row['funeral_home'] .'</h3>
+                          <h3>' . $row['contact_person'] .'</h3>
+                          <h3>' . $row['contact_no'] .'</h3>
+                          <h3>' . $row['funeral_service_date'] .', ' . $row['funeral_service_time'] .'</h3>
+                          <h3>' . $row['funeral_service_location'] .'</h3>
+                          <h3>' . $row['worship_name'] .'</h3>
+                          <h3>' . $row['burial_date'] .' , ' . $row['burial_time'] .'</h3>
+                          <h3>' . $row['burial_location'] .'</h3>
+                          <h3>' . $row['county'] .'</h3>
                         </div>
                         <div class="tab-pane p-3" id="messages" role="tabpanel">
                           <h3>Burial Location</h3>
@@ -92,4 +122,18 @@ if ($result->num_rows > 0) {
           </div>';
 } else {
     echo "Record not found.";
-}
+}?>
+        </div>
+    </div>
+  </div>
+
+  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/sidebarmenu.js"></script>
+  <script src="../assets/js/app.min.js"></script>
+  <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+  <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
+</body>
+
+</html>
